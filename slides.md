@@ -151,6 +151,7 @@ const truckSchema = mongoose.Schema({
   description: {
     type: String,
     trim: true,
+    maxlength: [100, "description is too long"],
   },
   tags: [String],
 });
@@ -187,7 +188,8 @@ transition: slide-left
   router.get("/add", truckController.addTruck);
   router.post("/add", truckController.createTruck);
   ```
- 
+- download foodtruck svg from [Undraw](https://undraw.co/) into /public/images/
+
 
 
 ---
@@ -289,10 +291,32 @@ class: text-left
 transition: slide-left
 ---
 
-# pg4
+# GET all Foodtrucks
 
-- in `/src/models/user.js`:
+- in /controllers/truckController.js:
+  ```js
+  const getTrucks = async (req, res) => {
+    const trucks = await truckHandler.getAllTrucks();
+    res.render("trucks", { title: "All Trucks", trucks });
+  };
+  ```
+- in /handlers/truckHandler.js:
+  ```js
+  const getAllTrucks = async () => {
+    return await Truck.find().lean();
+  };
 
+  export default {
+   getAllTrucks,
+   createTruck
+  }
+  ```
+- in /routes/router.js:
+  ```js
+  router.get("/", truckController.getTrucks);
+  router.get("/trucks", truckController.getTrucks);
+  ```
+- create /views/trucks.ejs and /views/components/truck.ejs
 
 ---
 transition: slide-left
