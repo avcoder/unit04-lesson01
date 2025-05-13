@@ -18,8 +18,9 @@ mdc: true
 
 # EJS
 Full-Stack Development - part 1/8
-- [ ] EJS
 - [ ] Refactor App
+- [ ] EJS
+- [ ] Agile & Scrum
 
 <div class="abs-br m-6 text-xl">
   <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
