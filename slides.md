@@ -121,7 +121,7 @@ class: text-left
 - 🤓 [Learn Anything](https://learn-anything.xyz/)
 - 🥪 [CSS :has()](https://x.com/wesbos/status/1737148340322652632)
 - 🦸‍♂️ [GSAP Now Free](https://gsap.com/pricing/)
-- 🛏️ [How did REST come to mean Opposite of REST](https://htmx.org/essays/how-did-rest-come-to-mean-the-opposite-of-rest/)
+- 🌶️ [How did REST come to mean Opposite of REST](https://htmx.org/essays/how-did-rest-come-to-mean-the-opposite-of-rest/)
 
 <br>
 <hr>
@@ -138,112 +138,33 @@ class: text-left
 transition: slide-left
 ---
 
-# Refactor / Tidy
+# pg1
 
 - Move our get `/` route into our routes file as well
-- Change `app.use("/api", router)` to `app.use("/", router);`
-- Cut/paste our `app.get("/"...)` into our `router.js` file as `router.get("/"...)`
-- Refactor all our `/api/order` routes to now be prepended with `/api/whatever` 
-- Insert 2 new routes related:
-  ```js
-  router.get("/user", userController.createUser);
-  router.get("/login", userController.loginUser);
-  ```
-- `import userController from "./controllers/userController.js"`
 
 ---
 transition: slide-left
 --- 
 
-# Passport (pg.1)
+# pg2
 
 - https://www.passportjs.org/packages/
-- `npm i passport passport-local-mongoose express-session connect-mongo`
-  ```js
-  import passport from 'passport'; // in server.js
-  import session from 'express-session';
-  import MongoStore from 'connect-mongo';
-  import User from "./models/user.js";
-
-  // passport-local-mongoose provides .createStrategy() which uses passport-local under the hood
-  passport.use(User.createStrategy()); 
-  passport.serializeUser(User.serializeUser()); // upon successful login writes user ID to session
-  passport.deserializeUser(User.deserializeUser()); // called on every request that has a session which then reads user ID from session, and populates req.user
-  
-  app.use(session({  
-    secret: process.env.PASSPORT_SECRET, // remember to input this in .env
-    key: process.env.PASSPORT_COOKIE_KEY,  // remember to input this in .env
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.DB_CONN}) // store sessions in mongoDB (not in memory)
-  }));
-
-  app.use(passport.initialize()); 
-  app.use(passport.session());
-  ```
 
 ---
 transition: slide-left
 ---
 
-# Passport (pg.2)
+# pg3
 
 - Create new route to:
-  ```js
-  router.get("/register", userController.registerForm);
-  router.get("/login", userController.loginForm);
-  ```
-- Create new controller functions in `/src/controllers/userController.js`
-  ```js
-  const registerForm = async (req, res) => {
-    res.render("register", { title: "Register" });
-  };
-
-  const loginForm = async (req, res) => {
-    res.render("login", { title: "Login" });
-  };
-  ```
-- Create new login.ejs and register.ejs pages
 
 ---
 transition: slide-left
 ---
 
-# Passport (pg.3)
+# pg4
 
 - in `/src/models/user.js`:
-  ```js
-  import mongoose from "mongoose";
-  import plm from "passport-local-mongoose"; 
-
-  const userSchema = mongoose.Schema({
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true, // hashed password
-    },
-  });
-
-  // below adds username, hash and salt fields,
-  // and will store username, hashed password and salt value
-  userSchema.plugin(plm); 
-
-  export default mongoose.model("user", userSchema);
-  ```
-- Test it
-
-
----
-transition: slide-left
----
-
-# Exercise Passport
-
-1. Try incorporating the signup, the login using .ejs pages
 
 
 ---
@@ -252,4 +173,4 @@ transition: slide-left
 
 # Homework
 
-- Make a To-Do List App with MongoDB [see instructions in LMS](https://courses.circuitstream.com/d2l/le/lessons/9514/topics/49825)
+- Start working on your midterm note-taking app
