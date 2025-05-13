@@ -92,7 +92,6 @@ transition: slide-left
     res.render("home", { title: "🚚 Welcome to Food Truck!" });
   });
   ```
-
 - in /views/home.ejs:
   ```html
   <h1><%= title %></h1>
@@ -102,7 +101,6 @@ transition: slide-left
   <p><%- u.dump(u.menu) %></p>
   <p><%- u.datefns.format(new Date(), "'Today is a ' eeee") %></p>
   ```
-
 - create /utils/utils.js
 - add it in app.js via middleware
 - Download [Feather Icons](https://feathericons.com/)
@@ -143,22 +141,91 @@ transition: slide-left
 ---
 
 # Add Foodtruck Model
-
-- asdf
+```js
+import mongoose from "mongoose";
+import GithubSlugger from "github-slugger";
+const slugger = new GithubSlugger();
+const truckSchema = mongoose.Schema({
+  name: {
+    type: String,
+    trim: true,
+    required: [true, "truck name is required"],
+  },
+  slug: String,
+  description: {
+    type: String,
+    trim: true,
+  },
+  tags: [String],
+});
+truckSchema.pre("save", function (next) {
+  if (!this.isModified("name")) {
+    next();
+    return;
+  }
+  this.slug = slugger.slug(this.name);   // TODO: ensure slugs are unique
+  next();
+});
+export default mongoose.model("truck", truckSchema); // import it in index.js
+```
 
 ---
 transition: slide-left
 ---
 
-# pg6
+# GET/POST route for adding a truck
 
-asdf
+- in /controllers/truckController.js:
+  ```js
+  const addTruck = (req, res) => {
+    res.render("addTruck", { title: "Add Store" });
+  };
+
+  const createTruck = (req, res) => {
+    console.log("in createTruck");
+    res.json(req.body); // temporary for now
+  };
+  ```
+- in /routes/router.js:
+  ```js
+  router.get("/add", truckController.addTruck);
+  router.post("/add", truckController.createTruck);
+  ```
+ 
+
 
 ---
 transition: slide-left
 ---
 
-# Exercise JWT
+# Create EJS for add
+
+```html
+    <h2><%= title %></h2>
+    <form action="/add" method="POST">
+      <label for="truck-name">Truck Name</label>
+      <input type="text" name="truck-name" />
+      <br />
+      <label for="description">Description</label>
+      <textarea name="description"></textarea>
+      <% const choices = ['Cash only', 'Debit only', 'Online ordering',
+      'Corporate lunches', 'Vegetarian'] %>
+      <ul>
+        <% choices.map((choice) => { %>
+        <li>
+          <input
+            type="checkbox"
+            name="food"
+            id="<%= choice %>"
+            value="<%= choice %>"
+          />
+          <label for="<%= choice %>"><%= choice %></label>
+        </li>
+        <% }) %>
+      </ul>
+      <button type="submit">Save</button>
+    </form>
+```
 
 asdf
 
