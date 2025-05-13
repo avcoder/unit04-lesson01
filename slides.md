@@ -16,7 +16,7 @@ transition: slide-left
 mdc: true
 ---
 
-# EJS
+# Full-Stack Development
 Full-Stack Development - part 1/8
 - [ ] Refactor App
 - [ ] EJS
