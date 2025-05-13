@@ -52,22 +52,31 @@ transition: slide-left
 # Refactor App v.3
 Use what you will learn here to help build your mid-term
 
-1. Initialize a new Node.js project set up with all folders, routes, controllers, models etc. and any other necessary components
+- Initialize a new Node.js project set up with all folders, routes, controllers, models etc. and any other necessary components
 - Create `.gitignore`
-- `npm i connect-mongo cookie-parser dotenv ejs express express-session express-validator mongoose morgan passport passport-local-mongoose`
+- `npm i connect-mongo cookie-parser dotenv ejs express express-session express-validator mongoose morgan passport passport-local-mongoose github-slugger connect-flash`
 - `npm i -D nodemon`
 - edit `package.json`
    - insert under scripts, `"start": "nodemon index.js"`
    - we'll use ES import way, so add `"type": "module",`
 
 
+
 ---
 transition: slide-left
 ---
 
-# pg2
+# Build infrastructure
 
-asdf
+- create folder structure:
+   - /controllers
+   - /handlers
+   - /models
+   - /public
+   - /routes
+   - /utils
+   - /views
+- create files connect.js, passport.js, index.js, app.js, /models/userModel.js
 
 ---
 transition: slide-left
