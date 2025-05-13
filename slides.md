@@ -56,7 +56,7 @@ Use what you will learn here to help build your mid-term
 Initialize a new Node.js project set up with all folders, routes, controllers, models etc. and any other necessary components
 
 - `npm init -y`
-- `npm i connect-mongo cookie-parser dotenv ejs express express-session express-validator mongoose morgan passport passport-local-mongoose github-slugger connect-flash bootstrap@5.3.6 bootswatch`
+- `npm i connect-mongo cookie-parser date-fns dotenv ejs express express-session express-validator mongoose morgan passport passport-local-mongoose github-slugger connect-flash bootstrap@5.3.6 bootswatch`
 - `npm i -D nodemon`
 - edit `package.json`
    - insert under scripts, `"start": "nodemon index.js"`
