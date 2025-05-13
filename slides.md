@@ -54,7 +54,7 @@ Use what you will learn here to help build your mid-term
 Initialize a new Node.js project set up with all folders, routes, controllers, models etc. and any other necessary components
 
 - `npm init -y`
-- `npm i connect-mongo cookie-parser dotenv ejs express express-session express-validator mongoose morgan passport passport-local-mongoose github-slugger connect-flash`
+- `npm i connect-mongo cookie-parser dotenv ejs express express-session express-validator mongoose morgan passport passport-local-mongoose github-slugger connect-flash bootstrap@5.3.6 bootswatch`
 - `npm i -D nodemon`
 - edit `package.json`
    - insert under scripts, `"start": "nodemon index.js"`
@@ -88,7 +88,7 @@ transition: slide-left
 - in /routes/router.js:
   ```js
   router.get("/", (req, res) => {
-    res.render("home", { title: "🚚 Welcome to Food Truck!" });
+    res.render("home", { title: "Welcome to FoodTrucks" });
   });
   ```
 - in /views/home.ejs:
@@ -317,6 +317,38 @@ transition: slide-left
   router.get("/trucks", truckController.getTrucks);
   ```
 - create /views/trucks.ejs and /views/components/truck.ejs
+
+
+---
+transition: slide-left
+---
+
+# Add Bootstrap and EJS partials
+
+- in app.js:
+  ```js
+  app.use(
+    "/css",
+    express.static(path.join(__dirname, "node_modules/bootswatch/dist/sketchy"))
+  );
+  app.use(
+    "/js",
+    express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
+  );
+  ```
+- in routes/router.js:
+  ```js
+  router.get("/", truckController.homePage);
+  ```
+- create /views/components/truck.ejs, header.ejs, footer.ejs, trucks.ejs
+
+---
+transition: slide-left
+---
+
+# Exercise
+
+- Modify home.ejs such that it GETs all the foodtruck data, but displays it in the form of a Bootstrap table (columns may include: Truck Name, Description, Tags, Url, Edit, Delete)
 
 ---
 transition: slide-left
