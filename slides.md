@@ -53,6 +53,12 @@ transition: slide-left
 Use what you will learn here to help build your mid-term
 
 1. Initialize a new Node.js project set up with all folders, routes, controllers, models etc. and any other necessary components
+- Create `.gitignore`
+- `npm i connect-mongo cookie-parser dotenv ejs express express-session express-validator mongoose morgan passport passport-local-mongoose`
+- `npm i -D nodemon`
+- edit `package.json`
+   - insert under scripts, `"start": "nodemon index.js"`
+   - we'll use ES import way, so add `"type": "module",`
 
 
 ---
@@ -61,7 +67,7 @@ transition: slide-left
 
 # pg2
 
-1. In `/src/handlers/user.js`:
+asdf
 
 ---
 transition: slide-left
@@ -70,7 +76,7 @@ transition: slide-left
 # pg3
 Let's create sign-in functionality
 
-1. In `server.js`
+asdf
 
 ---
 transition: slide-left
@@ -78,7 +84,7 @@ transition: slide-left
 
 # pg4
 
-1. in `/src/controlllers/userController.js`
+asdf
 
 ---
 transition: slide-left
@@ -86,7 +92,7 @@ transition: slide-left
 
 # pg5
 
-1. in `/src/handlers/user.js`
+asdf
 
 ---
 transition: slide-left
@@ -94,7 +100,7 @@ transition: slide-left
 
 # pg6
 
-1. Let's put back our `protect` guard function. In `server.js`
+asdf
 
 ---
 transition: slide-left
@@ -102,7 +108,7 @@ transition: slide-left
 
 # Exercise JWT
 
-3. If successful, you should be able to:
+asdf
 
 
 
@@ -110,16 +116,17 @@ transition: slide-left
 ---
 layout: image-right
 transition: slide-left
-image: /assets/bos.png
-backgroundSize: 500px 300px
+image: /assets/100days.png
+backgroundSize: 400px 120px
 class: text-left
 ---
 
 # 10 minute break
 
 🍦 Cool Tips, Trends and Resources:
+- 💯 [100 Days of Code](https://www.100daysofcode.com/)
 - 🤓 [Learn Anything](https://learn-anything.xyz/)
-- 🥪 [CSS :has()](https://x.com/wesbos/status/1737148340322652632)
+- 🥪 [CSS has](https://x.com/wesbos/status/1737148340322652632)
 - 🦸‍♂️ [GSAP Now Free](https://gsap.com/pricing/)
 - 🌶️ [How did REST come to mean Opposite of REST](https://htmx.org/essays/how-did-rest-come-to-mean-the-opposite-of-rest/)
 
@@ -133,30 +140,6 @@ class: text-left
 <!-- 
 - take attendance
 -->
-
----
-transition: slide-left
----
-
-# pg1
-
-- Move our get `/` route into our routes file as well
-
----
-transition: slide-left
---- 
-
-# pg2
-
-- https://www.passportjs.org/packages/
-
----
-transition: slide-left
----
-
-# pg3
-
-- Create new route to:
 
 ---
 transition: slide-left
