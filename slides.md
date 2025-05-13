@@ -84,10 +84,28 @@ transition: slide-left
 transition: slide-left
 ---
 
-# pg3
-Let's create sign-in functionality
+# Create EJS page and utils
 
-asdf
+- in /routes/router.js:
+```js
+router.get("/", (req, res) => {
+  res.render("home", { title: "🚚 Welcome to Food Truck!" });
+});
+```
+
+- in /views/home.ejs:
+```html
+<h1><%= title %></h1>
+<p><%= currentPath %></p>
+<p><%= u.siteName %></p>
+<p><%- u.icon("zap") %></p>
+<p><%- u.dump(u.menu) %></p>
+<p><%- u.datefns.format(new Date(), "'Today is a ' eeee") %></p>
+```
+
+- create /utils/utils.js
+- add it in app.js via middleware
+- Download [Feather Icons](https://feathericons.com/)
 
 ---
 transition: slide-left
