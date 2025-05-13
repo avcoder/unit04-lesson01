@@ -16,11 +16,10 @@ transition: slide-left
 mdc: true
 ---
 
-# EJS, Agile Practices
+# EJS
 Full-Stack Development - part 1/8
 - [ ] EJS
 - [ ] Refactor App
-- [ ] Agile & Scrum
 
 <div class="abs-br m-6 text-xl">
   <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
@@ -113,27 +112,24 @@ transition: slide-left
 
 - add /handlers/errorHandlers.js
   ```js
-  const catchErrors = (fn) => {
+  export const catchErrors = (fn) => {
     return function (req, res, next) {
       return fn(req, res, next).catch(next);
     };
   };
 
-  const notFound = (req, res, next) => {
+  export const notFound = (req, res, next) => {
     const err = new Error("Not Found");
     err.status = 404;
     next(err);
-  };
-
-  export default {
-    catchErrors,
-    notFound,
   };
   ```
 
 - in app.js:
   ```js
-  import errorHandlers from "./handlers/errorHandlers.js";
+  import { notFound } from "./handlers/errorHandlers.js";
+
+  app.use(notFound); // place near bottom after our routes
   ```
 
 ---
@@ -166,7 +162,7 @@ truckSchema.pre("save", function (next) {
   this.slug = slugger.slug(this.name);   // TODO: ensure slugs are unique
   next();
 });
-export default mongoose.model("truck", truckSchema); // import it in index.js
+export default mongoose.model("Truck", truckSchema); // import it in index.js
 ```
 
 ---
@@ -182,8 +178,8 @@ transition: slide-left
   };
 
   const createTruck = (req, res) => {
-    console.log("in createTruck");
-    res.json(req.body); // temporary for now
+    const truckData = req.body;
+    res.redirect("/"); // temporary for now
   };
   ```
 - in /routes/router.js:
@@ -203,8 +199,8 @@ transition: slide-left
 ```html
     <h2><%= title %></h2>
     <form action="/add" method="POST">
-      <label for="truck-name">Truck Name</label>
-      <input type="text" name="truck-name" />
+      <label for="name">Truck Name</label>
+      <input type="text" name="name" />
       <br />
       <label for="description">Description</label>
       <textarea name="description"></textarea>
@@ -215,7 +211,7 @@ transition: slide-left
         <li>
           <input
             type="checkbox"
-            name="food"
+            name="tags"
             id="<%= choice %>"
             value="<%= choice %>"
           />
@@ -227,9 +223,38 @@ transition: slide-left
     </form>
 ```
 
-asdf
+---
+transition: slide-left
+---
 
+# create Truck handler
 
+- in `/handlers/truckHandler.js`:
+  ```js
+  import Truck from "../models/truckModel.js";
+
+  const createTruck = async (truckData) => {
+    return await Truck.create(truckData);
+  };
+
+  export default {
+    createTruck,
+  };
+  ```
+- in `/controllers/truckController.js`:
+  ```js
+  const createTruck = async (req, res) => {
+    const truckData = req.body;
+    await truckHandler.createTruck(truckData);
+    res.redirect("/"); // temp for now
+  };
+  ```
+- in /routes/router.js: 
+  ```js
+  import { catchErrors } from "../handlers/errorHandlers.js";
+
+  router.post("/add", catchErrors(truckController.createTruck));
+  ```
 
 
 ---
