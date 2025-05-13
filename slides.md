@@ -87,21 +87,21 @@ transition: slide-left
 # Create EJS page and utils
 
 - in /routes/router.js:
-```js
-router.get("/", (req, res) => {
-  res.render("home", { title: "🚚 Welcome to Food Truck!" });
-});
-```
+  ```js
+  router.get("/", (req, res) => {
+    res.render("home", { title: "🚚 Welcome to Food Truck!" });
+  });
+  ```
 
 - in /views/home.ejs:
-```html
-<h1><%= title %></h1>
-<p><%= currentPath %></p>
-<p><%= u.siteName %></p>
-<p><%- u.icon("zap") %></p>
-<p><%- u.dump(u.menu) %></p>
-<p><%- u.datefns.format(new Date(), "'Today is a ' eeee") %></p>
-```
+  ```html
+  <h1><%= title %></h1>
+  <p><%= currentPath %></p>
+  <p><%= u.siteName %></p>
+  <p><%- u.icon("zap") %></p>
+  <p><%- u.dump(u.menu) %></p>
+  <p><%- u.datefns.format(new Date(), "'Today is a ' eeee") %></p>
+  ```
 
 - create /utils/utils.js
 - add it in app.js via middleware
@@ -111,9 +111,32 @@ router.get("/", (req, res) => {
 transition: slide-left
 ---
 
-# pg4
+# Add Error Handlers
 
-asdf
+- add /handlers/errorHandlers.js
+  ```js
+  const catchErrors = (fn) => {
+    return function (req, res, next) {
+      return fn(req, res, next).catch(next);
+    };
+  };
+
+  const notFound = (req, res, next) => {
+    const err = new Error("Not Found");
+    err.status = 404;
+    next(err);
+  };
+
+  export default {
+    catchErrors,
+    notFound,
+  };
+  ```
+
+- in app.js:
+  ```js
+  import errorHandlers from "./handlers/errorHandlers.js";
+  ```
 
 ---
 transition: slide-left
