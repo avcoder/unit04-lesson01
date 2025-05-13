@@ -36,6 +36,7 @@ transition: slide-left
 
 # Review
 
+- Early look at Midterm in LMS
 - "Full-stack" combines both frontend and backend of a web application
    - can build complete apps from start to finish
    - often handles APIs, auth, databases and deployment
